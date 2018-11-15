@@ -7,3 +7,5 @@
 * PathFollowingControl.m
   - Plots sequential position of the vessel.
   - Controls the heading angle with P contorller
+  - The variables you can adjust are
+  "line 67"
