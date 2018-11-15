@@ -9,26 +9,33 @@
   - Controls the heading angle with P contorller
   - The variables you can adjust are
   
-    >  ```
-    > % The limit of the thrust
-    > line 6 thrustLimit    
+    > ```
+    > - The limit of the thrust
+    >   line 6 thrustLimit    
     > 
-    > % Inital position of the vessel
-    > line 10 xEarth       
-    > line 11 yEarth 
-    > line 12 psi 
+    > - Inital position of the vessel
+    >   line 10 xEarth       
+    >   line 11 yEarth 
+    >   line 12 psi 
     >  
-    > % Initial velocity of the vessel
-    > line 15 uBody
-    > line 16 vBody
-    > line 17 r
+    > - Initial velocity of the vessel
+    >   line 15 uBody
+    >   line 16 vBody
+    >   line 17 r
     >
-    > % Waypoints represented as [[x1, y1]; [x2, y2]; [x3, y3]; ...]
-    >  line 29 waypoint
+    > - Waypoints represented as 
+    >   [[x of first waypoint, y of first waypoint];
+    >   [x of second waypoint, y of second waypoint];
+    >   [x of third waypoint, y of third waypoint];
+    >   ...]]
+    >   line 29 waypoint
+    >
+    > - Time interval for simulation 
+    >   line 45 dt
     >  
-    >  line 45 dt
+    > - Reaching criterion to the waypoints
+    >   line 35 reach
     >  
-    >  line 35 reach
-    >  
-    >  line 57 pGain ~sdf~
+    > - P gain for the P controller
+    >   line 57 pGain ~sdf~
     >  ```
