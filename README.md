@@ -6,4 +6,4 @@
     
 * PathFollowingControl.m
   - Plots sequential position of the vessel.
-  - Controls the headking angle with P contorller
+  - Controls the heading angle with P contorller
