@@ -25,9 +25,9 @@ vEarthY = vBody * cos(psi) ;        % Earth's y direction component of vBody
 VEarthX = uEarthX + vEarthX ;       % Earth's x direction component of V(ship speed)
 VEarthY = uEarthY + vEarthY ;       % Earth's y direction component of V(ship speed)
 
-%% Target waypoint in the Earth coordinate system
-waypoint = [[10, 10];
-            [20, 30]] ;
+%% Waypoints in the Earth coordinate system
+waypoint = [[3, 3];
+            [10, 15]] ;
 
 %% Condition for simulation
 time = 0 ;      % initial time
@@ -50,11 +50,23 @@ for waypointIndex = 1:length(waypoint)
         %% Advance direction angle error
         errorX = xWaypoint - xEarth ;        % error of x between the target and the ship
         errorY = yWaypoint - yEarth ;        % error of y between the target and the ship
-        errorN = atan2(errorY, errorX) ;        
-
+        
+        theta = atan2(errorY, errorX) ;      % angle of waypoint deriection in Earth coordinate system
+        if theta < 0                         % compensate the angle representation range from [-pi, pi] to [0, 2*pi]
+           theta = theta + 2*pi ;
+        end
+        
+        errorN = theta - psi ;               % error of y between the target and the ship
+        
+        if pi <= errorN && errorN < 2*pi     % compensate the angle representation range from [-pi, pi] to [0, 2*pi]
+            errorN = errorN - 2*pi ;
+        elseif -2*pi < errorN && errorN < -pi
+            errorN = errorN + 2*pi ;
+        end
+        
         %% P controller
         % input: angle error, output: control force
-        pGain = 300 ;
+        pGain = 150 ;
         controlInputForce = pGain * errorN ;
 
         % Control force saturation. Control force(will be tau_N) is limited when it exceed the limit of thrust
@@ -86,8 +98,9 @@ for waypointIndex = 1:length(waypoint)
         r = velocityBodyMat(3) ;           % unapck
 
         % New ship position from the new ship velocity
-        psi = r * dt ;          
-
+        psi = psi + r * dt ;          
+        psi = mod(psi, 2*pi) ;      % compensate the angle representation range from [0, inf] to [0, 2*pi]
+                    
             % Transformation of the coordinate system form the body tp the Earth
         uEarthX = uBody * cos(psi) ;        % Earth's x direction component of uBody
         uEarthY = uBody * sin(psi) ;        % Earth's y direction component of uBody
