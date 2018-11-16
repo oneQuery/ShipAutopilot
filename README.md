@@ -37,5 +37,5 @@
        line 35 reach
       
      - P gain for the P controller
-       line 69 pGain ~sdf~
+       line 69 pGain
       ```
