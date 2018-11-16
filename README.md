@@ -37,5 +37,6 @@
        line 35 reach
       
      - P gain for the P controller
+       This value means how much strong you intend to control the actuator
        line 69 pGain
       ```
