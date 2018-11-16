@@ -31,11 +31,11 @@
        line 29 waypoint
     
      - Time interval for simulation 
-       line 45 dt
+       line 34 dt
       
      - Reaching criterion to the waypoints
        line 35 reach
       
      - P gain for the P controller
-       line 57 pGain ~sdf~
+       line 69 pGain ~sdf~
       ```
